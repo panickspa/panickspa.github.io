@@ -93,7 +93,11 @@
           </b-col>
           <div class="w-100 d-lg-none"></div>
           <b-col>
-            <a href="http://instagram.com/panicks__" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.instagram.com/panicks___/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <v-icon name="instagram"></v-icon>
             </a>
           </b-col>
