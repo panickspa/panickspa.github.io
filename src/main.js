@@ -3,8 +3,8 @@ import BootstrapVue from "bootstrap-vue";
 import App from "./App.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import feather from "vue-icon";
 import VueScrollTo from "vue-scrollto";
+import Router from "./router.js";
 
 console.log(BootstrapVue);
 
@@ -25,11 +25,6 @@ Vue.use(VueScrollTo, {
   y: true
 });
 
-Vue.use(feather, {
-  name: "v-icon",
-  baseClass: "v-icon",
-  classPrefix: "v-icon-"
-});
 Vue.use(BootstrapVue);
 
 new Vue({
@@ -37,6 +32,7 @@ new Vue({
   created() {
     this.$root.$on("bv::scrollspy::activate", this.onActivate);
   },
+  router: Router,
   methods: {
     onActivate(target) {
       console.log("Receved Event: bv::scrollspy::activate for target ", target);
