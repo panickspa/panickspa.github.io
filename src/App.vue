@@ -1,12 +1,40 @@
 <template>
   <div id="app">
-    <b-nav id="nav-main" class="justify-content-center sticky-top" b-scrollspy:content>
-      <b-nav-item active href="/home" to="home">Home</b-nav-item>
-      <b-nav-item href="/animation" to="animation">Animation</b-nav-item>
-      <b-nav-item href="/gallery" to="gallery">Galery</b-nav-item>
-    </b-nav>
+    <b-navbar id="nav-main" class="justify-content-center sticky-top bg-dark" b-scrollspy:content>
+      <b-navbar-brand class="text-white">
+        <h5>Panicks</h5>
+      </b-navbar-brand>
+      <b-nav>
+        <b-nav-item
+          href="/home"
+          to="home"
+          v-bind:class="{ activeClick: isActive[0] }"
+          v-on:click="setActive(0)"
+        >Home</b-nav-item>
+        <b-nav-item
+          href="/animation"
+          to="animation"
+          v-bind:class="{ activeClick: isActive[1] }"
+          v-on:click="setActive(1)"
+        >Animation</b-nav-item>
+        <b-nav-item
+          href="/gallery"
+          to="gallery"
+          v-bind:class="{ activeClick: isActive[2] }"
+          v-on:click="setActive(2)"
+        >Galery</b-nav-item>
+      </b-nav>
+    </b-navbar>
     <div id="content">
-      <router-view/>
+      <transition
+        name="fade"
+        mode="out-in"
+        @beforeLeave="beforeLeave"
+        @enter="enter"
+        @afterEnter="afterEnter"
+      >
+        <router-view></router-view>
+      </transition>
       <footer id="about" class="pb-3 pt-3">
         <b-container>
           <b-row>
@@ -62,9 +90,17 @@
 export default {
   name: "app",
   data() {
-    return {};
+    return {
+      navcode: 0,
+      isActive: [true, false, false]
+    };
   },
   methods: {
+    setActive(index) {
+      this.isActive = [false, false, false];
+      this.isActive[index] = true;
+      console.log(this.isActive);
+    },
     scrollIntoView(evt) {
       evt.preventDefault();
       const href = evt.target.getAttribute("href");
@@ -77,6 +113,9 @@ export default {
 };
 </script>
 <style lang="scss">
+body * {
+  transition: all 3ms ease-in-out;
+}
 header {
   height: 33em;
   width: 100%;
@@ -92,19 +131,32 @@ header .paragraph {
 
 ul.nav li a {
   color: white;
+  transition: all 0.7s ease-in-out;
+}
+
+ul.nav li.nav-item {
+  border: 2px solid rgb(27, 27, 27);
 }
 
 ul.nav li.nav-item:active {
   background: rgb(51, 51, 51);
+  border: 2px solid rgb(36, 120, 255);
+}
+
+.activeClick {
+  background: rgb(51, 51, 51);
+  border: 2px solid rgb(51, 51, 51);
+  transition: all 0.7s ease-in-out;
 }
 
 ul.nav li a:hover {
   color: rgb(36, 120, 255);
   text-decoration: underline;
+  transition: all 0.7s ease-in-out;
 }
 
 ul.nav {
-  background: rgba(27, 27, 27, 0.746);
+  background: rgb(27, 27, 27);
 }
 
 div#app {
@@ -123,5 +175,17 @@ footer a > svg {
 }
 footer a > i {
   font-size: 5em;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>
