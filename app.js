@@ -37,18 +37,15 @@ new ScrollMagic
             elmArr[0].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(${100-prog.current*100}% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(100% 0px 0px)`)
-        }
-        if(prog.completed > 1 ) {
+        }else if(prog.completed > 1 ) {
             elmArr[0].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(${100-prog.current*100}% 0px 0px)`)
-        }
-        if(prog.completed > 2 ) {
+        }else if(prog.completed > 2 ) {
             elmArr[0].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
-        }
-        if(prog.completed == 0){
+        }else if(prog.completed == 0){
             elmArr[0].setAttribute("style", `clip-path : inset(${100-prog.current*100}% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(100% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(100% 0px 0px)`)
