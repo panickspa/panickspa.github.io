@@ -32,20 +32,23 @@ new ScrollMagic
     .addTo(controller)
     .on("progress", e => {
         let prog = progressAnim(e.progress, elmArr)
-        console.log(prog, e.progress)
+        // console.log(prog, e.progress)
         if(prog.completed > 0 ) {
             elmArr[0].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(${100-prog.current*100}% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(100% 0px 0px)`)
-        }else if(prog.completed > 1 ) {
+        }
+        if(prog.completed > 1 ) {
             elmArr[0].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(${100-prog.current*100}% 0px 0px)`)
-        }else if(prog.completed > 2 ) {
+        }
+        if(prog.completed > 2 ) {
             elmArr[0].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(0% 0px 0px)`)
-        }else if(prog.completed == 0){
+        }
+        if(prog.completed == 0){
             elmArr[0].setAttribute("style", `clip-path : inset(${100-prog.current*100}% 0px 0px)`)
             elmArr[1].setAttribute("style", `clip-path : inset(100% 0px 0px)`)
             elmArr[2].setAttribute("style", `clip-path : inset(100% 0px 0px)`)
